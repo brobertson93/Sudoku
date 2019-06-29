@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SudokuService {
 
+  public toggle: boolean = false;
   public puzzle: Array<Array<SudokuSquare>> = [];
   public testable = "test";
   private behavior: BehaviorSubject<Array<Array<SudokuSquare>>> = new BehaviorSubject(this.puzzle);
@@ -57,15 +58,22 @@ export class SudokuService {
   getPossibilities(row, column): Array<number> {
     let array: Array<number> = [];
     for (let i = 0; i < 9; i++) {
-      array.push(this.puzzle[row][i].value);
-      array.push(this.puzzle[i][column].value);
+      if (i !== column) {
 
+        array.push(this.puzzle[row][i].value);
+      }
+      if (i !== row) {
+        array.push(this.puzzle[i][column].value);
+      }
     }
     let rowMin = (3 * Math.floor(row / 3));
     let columnMin = (3 * Math.floor(column / 3));
     for (let i = rowMin; i < rowMin + 3; i++) {
       for (let j = columnMin; j < columnMin + 3; j++) {
-        array.push(this.puzzle[i][j].value);
+        if (i != row || j != column) {
+
+          array.push(this.puzzle[i][j].value);
+        }
       }
 
     }

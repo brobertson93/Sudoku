@@ -1,10 +1,13 @@
-<input [ngClass]="{'d-none': (square.value == 0 && focused == false)}" (keydown)="onKey($event)"
-    (paste)="$event.preventDefault()" (focusout)="focusOut()" [attr.disabled]="square.imported ? 'disabled' : null"
-    class="printSqr" value="{{(square.value == 0)?'':square.value}}" #data>
+<input
+    [ngClass]="{'d-none': (square.value == 0 && focused == false &&  sudokuservice.toggle == true), 'error': (!square.possibilities.includes(square.value) && square.value != 0)}"
+    (keydown)="onKey($event)" (paste)="$event.preventDefault()" (focusout)="focusOut()"
+    [attr.disabled]="square.imported ? 'disabled' : null" class="printSqr"
+    value="{{(square.value == 0)?'':square.value}}" #data>
 
 
 
-<div [ngClass]="{'d-none': (square.value !== 0 || focused == true)}" class=" printSqr " (click)="onClick()">
+<div [ngClass]="{'d-none': (square.value !== 0 || focused == true || sudokuservice.toggle == false)  }"
+    class=" printSqr " (click)="onClick()">
 
     <div>{{square.possibilities.includes(1)? '1' : ''}}</div>
     <div>{{square.possibilities.includes(2)? '2' : ''}}</div>

@@ -3,3 +3,5 @@
 <div class="sudokuRow" *ngFor="let row of sudokuService.puzzle; index as i">
     <app-sudoku-square *ngFor="let column of row; index as j" [square]="puzzle[i][j]"></app-sudoku-square>
 </div>
+
+<button (click)="button()" class="btn btn-primary">Pencil</button>

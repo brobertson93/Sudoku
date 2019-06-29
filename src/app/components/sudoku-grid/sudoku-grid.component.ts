@@ -17,6 +17,13 @@ export class SudokuGridComponent implements OnInit {
     this.sudokuService.observablePuzzle.subscribe(data => {
       this.puzzle = data;
     })
+
+
+  }
+
+  button() {
+
+    this.sudokuService.toggle = !this.sudokuService.toggle;
   }
 
 }
