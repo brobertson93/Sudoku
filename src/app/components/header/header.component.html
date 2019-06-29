@@ -1,0 +1,9 @@
+<header class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" *ngFor="let link of links">
+                <a class="nav-link" [routerLink]="link.path" routerLinkActive="active">{{link.text}}</a>
+            </li>
+        </ul>
+    </div>
+</header>

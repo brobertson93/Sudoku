@@ -1,0 +1,13 @@
+<p *ngIf="isError">
+    <ngb-alert [dismissible]="false" type="danger">
+        <strong>Error:</strong> String must be 91 digits, where 0 represents an empty space.
+    </ngb-alert>
+</p>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Sudoku Puzzle String" aria-label="Sudoku Puzzle String"
+        aria-describedby="importButton" #sudokuInputString>
+    <div class="input-group-append">
+        <button class="btn btn-primary" type="button" id="importButton"
+            (click)="importPuzzle(sudokuInputString.value)">Import Puzzle</button>
+    </div>
+</div>
