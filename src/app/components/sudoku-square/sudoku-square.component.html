@@ -1,1 +1,20 @@
-{{ square.value}}
+<input [ngClass]="{'d-none': (square.value == 0 && focused == false)}" (keydown)="onKey($event)"
+    (paste)="$event.preventDefault()" (focusout)="focusOut()" [attr.disabled]="square.imported ? 'disabled' : null"
+    class="printSqr" value="{{(square.value == 0)?'':square.value}}" #data>
+
+
+
+<div [ngClass]="{'d-none': (square.value !== 0 || focused == true)}" class=" printSqr " (click)="onClick()">
+
+    <div>{{square.possibilities.includes(1)? '1' : ''}}</div>
+    <div>{{square.possibilities.includes(2)? '2' : ''}}</div>
+    <div>{{square.possibilities.includes(3)? '3' : ''}}</div>
+    <div>{{square.possibilities.includes(4)? '4' : ''}}</div>
+    <div>{{square.possibilities.includes(5)? '5' : ''}}</div>
+    <div>{{square.possibilities.includes(6)? '6' : ''}}</div>
+    <div>{{square.possibilities.includes(7)? '7' : ''}}</div>
+    <div>{{square.possibilities.includes(8)? '8' : ''}}</div>
+    <div>{{square.possibilities.includes(9)? '9' : ''}}</div>
+
+
+</div>

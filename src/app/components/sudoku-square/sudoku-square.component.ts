@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { SudokuSquare } from 'src/app/dto/sudoku-square';
+import { SudokuService } from 'src/app/services/sudoku.service';
+
 
 @Component({
   selector: 'app-sudoku-square',
@@ -9,10 +11,48 @@ import { SudokuSquare } from 'src/app/dto/sudoku-square';
 export class SudokuSquareComponent implements OnInit {
 
   @Input('square') square: SudokuSquare;
+  @ViewChild("data", { static: false }) dataField: ElementRef;
 
-  constructor() { }
+  focused: boolean = false;
+  constructor(private sudokuservice: SudokuService) { }
 
   ngOnInit() {
+
+  }
+
+  onClick() {
+    this.focused = true;
+    setTimeout(() => this.dataField.nativeElement.focus(), 0);
+
+  }
+
+  focusOut() {
+
+    this.focused = false;
+
+  }
+  onKey(event: KeyboardEvent) { // with type info
+    //this.values += (<HTMLInputElement>event.target).value + ' | ';
+    var isnum = /^\d+$/.test(event.key);
+
+
+    if (event.key == "Backspace" || event.key == "Delete") {
+
+    }
+
+    else if (!isnum) {
+      event.preventDefault();
+
+    }
+
+    else {
+
+      this.square.value = parseInt(event.key);
+      this.sudokuservice.updatePossibilities();
+      event.preventDefault();
+
+    }
+
   }
 
 }

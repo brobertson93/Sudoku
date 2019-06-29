@@ -36,6 +36,11 @@ export class SudokuService {
     }
     for (let i = 0; i < input.length; i++) {
       this.puzzle[Math.floor(i / 9)][i % 9].value = parseInt(input.charAt(i));
+      if (parseInt(input.charAt(i)) !== 0) {
+
+        this.puzzle[Math.floor(i / 9)][i % 9].imported = true;
+
+      }
     }
     this.updatePossibilities();
   }

@@ -18,8 +18,9 @@ export class SudokuInputComponent implements OnInit {
 
   }
 
-  importPuzzle(input: String) {
-    if (input.length !== 81) {
+  importPuzzle(input: string) {
+    var isnum = /^\d+$/.test(input);
+    if (input.length !== 81 || isnum == false) {
       this.isError = true;
       return;
     }

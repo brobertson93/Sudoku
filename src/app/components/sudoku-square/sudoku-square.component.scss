@@ -1,0 +1,49 @@
+$boxsizing: 45px; 
+
+.printSqr {
+
+height: $boxsizing;
+width: $boxsizing;
+line-height: $boxsizing;
+border-bottom: 1px solid black;
+border-left:1px solid black;
+text-align: center;
+font-size: 24px;
+color: gray;
+position: relative;
+cursor: text;
+
+
+}
+
+.printSqr div{
+
+    height: 33%;
+    width: 33%;
+    font-size: 8px;
+    line-height:15px;
+    float: left;
+
+}
+
+
+
+:host:nth-child(1) .printSqr{
+
+border-left: 3px solid black;
+
+
+}
+
+:host:nth-child(3n) .printSqr{
+
+    border-right: 3px solid black;
+    
+    
+    }
+    
+.printSqr:disabled {
+        color: black;
+        cursor: default;
+        background-color: white;
+        }
