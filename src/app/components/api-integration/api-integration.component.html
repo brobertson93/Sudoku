@@ -1,9 +1,12 @@
+<h2>Nasdaq</h2>
+<p>Shows some stock info from API</p>
+
 <table class="table table-striped table-dark">
     <thead>
         <tr>
 
-            <th scope="col">Date</th>
-            <th scope="col">Open</th>
+            <th (click)="sort('Date')" scope="col">Date</th>
+            <th (click)="sort('Open')" scope="col">Open</th>
             <th (click)="sort('High')" scope="col">High</th>
             <th (click)="sort('Low')" scope="col">Low</th>
             <th (click)="sort('Close')" scope="col">Close</th>
@@ -30,7 +33,3 @@
         </tr>
     </tbody>
 </table>
-
-<div *ngFor="let indivdualData of data; index as i">
-    <p>{{indivdualData.Volume}}</p>
-</div>

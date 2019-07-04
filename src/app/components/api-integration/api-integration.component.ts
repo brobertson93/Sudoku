@@ -29,13 +29,26 @@ export class ApiIntegrationComponent implements OnInit {
 
   sort(col) {
     if (col == this.last) {
-      this.data.sort(function (a, b) { return a[col] - b[col] });
+      this.data.sort(function (a, b) {
+        if (col == "Date") {
+          return <any>new Date(a.Date) - <any>new Date(b.Date);
+        }
+
+        return a[col] - b[col]
+
+
+      });
       this.last = 1;
 
     }
 
     else {
-      this.data.sort(function (a, b) { return b[col] - a[col] });
+      this.data.sort(function (a, b) {
+        if (col == "Date") {
+          return <any>new Date(b.Date) - <any>new Date(a.Date);
+        }
+        return b[col] - a[col]
+      });
       this.last = col;
     }
 
