@@ -1,0 +1,36 @@
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+
+            <th scope="col">Date</th>
+            <th scope="col">Open</th>
+            <th (click)="sort('High')" scope="col">High</th>
+            <th (click)="sort('Low')" scope="col">Low</th>
+            <th (click)="sort('Close')" scope="col">Close</th>
+            <th (click)="sort('Difference')" scope="col">Difference</th>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let indivdualData of data; index as i">
+
+            <td>{{indivdualData.Date | date}}</td>
+            <td>{{indivdualData.Open | number:'1.2-2'}}</td>
+            <td>{{indivdualData.High | number:'1.2-2'}}</td>
+            <td>{{indivdualData.Low | number:'1.2-2'}}</td>
+            <td>{{indivdualData.Close | number:'1.2-2'}}</td>
+            <td>{{indivdualData.Difference| number:'1.2-2' | negativeConvert}}</td>
+
+
+
+
+        </tr>
+    </tbody>
+</table>
+
+<div *ngFor="let indivdualData of data; index as i">
+    <p>{{indivdualData.Volume}}</p>
+</div>

@@ -11,7 +11,7 @@ export class SudokuGridComponent implements OnInit {
 
   puzzle: SudokuSquare[][];
 
-  constructor(private sudokuService: SudokuService) { }
+  constructor(public sudokuService: SudokuService) { }
 
   ngOnInit() {
     this.sudokuService.observablePuzzle.subscribe(data => {

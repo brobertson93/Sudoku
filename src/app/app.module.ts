@@ -15,6 +15,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { Error404Component } from './components/error404/error404.component';
 import { SudokuInputComponent } from './components/sudoku-input/sudoku-input.component';
 import { SudokuGeneratorComponent } from './components/sudoku-generator/sudoku-generator.component';
+import { ApiIntegrationComponent } from './components/api-integration/api-integration.component';
+import { NegativeConvertPipe } from './pipes/negative-convert.pipe';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { SudokuGeneratorComponent } from './components/sudoku-generator/sudoku-g
     FooterComponent,
     Error404Component,
     SudokuInputComponent,
-    SudokuGeneratorComponent
+    SudokuGeneratorComponent,
+    ApiIntegrationComponent,
+    NegativeConvertPipe
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     NgbModule
   ],

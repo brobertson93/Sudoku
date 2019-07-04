@@ -14,7 +14,7 @@ export class SudokuSquareComponent implements OnInit {
   @ViewChild("data", { static: false }) dataField: ElementRef;
 
   focused: boolean = false;
-  constructor(private sudokuservice: SudokuService) { }
+  constructor(public sudokuservice: SudokuService) { }
 
   ngOnInit() {
 
