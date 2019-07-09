@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SudokuService {
 
   public toggle: boolean = false;
-  public puzzle: Array<Array<SudokuSquare>> = [];
+  public puzzle: SudokuSquare[][] = [];
   public testable = "test";
   private behavior: BehaviorSubject<Array<Array<SudokuSquare>>> = new BehaviorSubject(this.puzzle);
   public observablePuzzle = this.behavior.asObservable();
@@ -28,6 +28,68 @@ export class SudokuService {
       this.puzzle.push(array);
     }
     this.behavior.next(this.puzzle);
+  }
+
+
+  findsquare(puzzle: SudokuSquare[][]) {
+
+    for (let i = 0; i < puzzle.length; i++) {
+
+
+
+
+      for (let k = 0; k < puzzle[i].length; k++) {
+
+        if (puzzle[i][k].value == 0) {
+
+          return puzzle[i][k];
+
+        }
+
+
+
+      }
+    }
+    return null;
+  }
+
+  recursion(puzzle) {
+
+    var sqr = this.findsquare(puzzle);
+
+    if (sqr == null) {
+
+      return true;
+    }
+
+    const copy = Object.assign([], sqr.possibilities);
+
+    for (let i = 0; i < copy.length; i++) {
+
+      sqr.value = copy[i]
+      this.updatePossibilities();
+
+      if (this.recursion(puzzle) == true) {
+
+        return true;
+
+
+      }
+
+    }
+    sqr.value = 0;
+    return false;
+
+
+
+
+  }
+
+  solvepuzzle() {
+
+    let solvable = this.recursion(this.puzzle);
+
+
   }
 
   setPuzzle(input: String) {

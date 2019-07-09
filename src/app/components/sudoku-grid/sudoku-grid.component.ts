@@ -26,4 +26,8 @@ export class SudokuGridComponent implements OnInit {
     this.sudokuService.toggle = !this.sudokuService.toggle;
   }
 
+  solve() {
+    this.sudokuService.solvepuzzle();
+  }
+
 }
