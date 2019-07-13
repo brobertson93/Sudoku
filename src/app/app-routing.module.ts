@@ -11,7 +11,13 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'api_integration', component: ApiIntegrationComponent },
   { path: 'resume', component: ResumeComponent },
+  {
+    path: '',
+    redirectTo: '/resume',
+    pathMatch: 'full'
+  },
   { path: '**', component: Error404Component },
+
 ];
 
 @NgModule({

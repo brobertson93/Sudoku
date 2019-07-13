@@ -38,6 +38,7 @@ export class SudokuSquareComponent implements OnInit {
 
     if (event.key == "Backspace" || event.key == "Delete") {
       this.square.value = 0;
+      this.sudokuservice.updatePossibilities();
 
     }
 
