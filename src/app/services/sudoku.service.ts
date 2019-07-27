@@ -6,10 +6,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SudokuService {
-
+  public toggleSolution: boolean = false;
   public toggle: boolean = false;
   public puzzle: SudokuSquare[][] = [];
-  public testable = "test";
+  public solvedPuzzle: SudokuSquare[][] = [];
+
   private behavior: BehaviorSubject<Array<Array<SudokuSquare>>> = new BehaviorSubject(this.puzzle);
   public observablePuzzle = this.behavior.asObservable();
   constructor() {
@@ -20,13 +21,20 @@ export class SudokuService {
 
     console.log('setting up the puzzle');
     this.puzzle = [];
+    this.solvedPuzzle = [];
     for (let i = 0; i < 9; i++) {
       let array: Array<SudokuSquare> = [];
+      let solvedArray: Array<SudokuSquare> = [];
       for (let j = 0; j < 9; j++) {
         array.push(new SudokuSquare());
+        solvedArray.push(new SudokuSquare());
       }
       this.puzzle.push(array);
+      this.solvedPuzzle.push(solvedArray);
     }
+
+
+    this.solvepuzzle();
     this.behavior.next(this.puzzle);
   }
 
@@ -67,7 +75,7 @@ export class SudokuService {
     for (let i = 0; i < copy.length; i++) {
 
       sqr.value = copy[i]
-      this.updatePossibilities();
+      this.updatePossibilities(puzzle);
 
       if (this.recursion(puzzle) == true) {
 
@@ -86,8 +94,10 @@ export class SudokuService {
   }
 
   solvepuzzle() {
+    setTimeout(function () {
 
-    let solvable = this.recursion(this.puzzle);
+      let solvable = this.recursion(this.solvedPuzzle);
+    }.bind(this))
 
 
   }
@@ -99,33 +109,36 @@ export class SudokuService {
     }
     for (let i = 0; i < input.length; i++) {
       this.puzzle[Math.floor(i / 9)][i % 9].value = parseInt(input.charAt(i));
+      this.solvedPuzzle[Math.floor(i / 9)][i % 9].value = parseInt(input.charAt(i));
       if (parseInt(input.charAt(i)) !== 0) {
 
         this.puzzle[Math.floor(i / 9)][i % 9].imported = true;
 
+
       }
+      this.solvedPuzzle[Math.floor(i / 9)][i % 9].imported = true;
     }
-    this.updatePossibilities();
+    this.solvepuzzle();
+    this.updatePossibilities(this.puzzle);
   }
 
-  updatePossibilities() {
+  updatePossibilities(puzzle) {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
-        this.puzzle[i][j].possibilities = this.getPossibilities(i, j);
+        puzzle[i][j].possibilities = this.getPossibilities(i, j, puzzle);
       }
     }
-    this.behavior.next(this.puzzle);
   }
 
-  getPossibilities(row, column): Array<number> {
+  getPossibilities(row, column, puzzle): Array<number> {
     let array: Array<number> = [];
     for (let i = 0; i < 9; i++) {
       if (i !== column) {
 
-        array.push(this.puzzle[row][i].value);
+        array.push(puzzle[row][i].value);
       }
       if (i !== row) {
-        array.push(this.puzzle[i][column].value);
+        array.push(puzzle[i][column].value);
       }
     }
     let rowMin = (3 * Math.floor(row / 3));
@@ -134,7 +147,7 @@ export class SudokuService {
       for (let j = columnMin; j < columnMin + 3; j++) {
         if (i != row || j != column) {
 
-          array.push(this.puzzle[i][j].value);
+          array.push(puzzle[i][j].value);
         }
       }
 

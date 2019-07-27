@@ -38,7 +38,7 @@ export class SudokuSquareComponent implements OnInit {
 
     if (event.key == "Backspace" || event.key == "Delete") {
       this.square.value = 0;
-      this.sudokuservice.updatePossibilities();
+      this.sudokuservice.updatePossibilities(this.sudokuservice.puzzle);
 
     }
 
@@ -50,7 +50,7 @@ export class SudokuSquareComponent implements OnInit {
     else {
 
       this.square.value = parseInt(event.key);
-      this.sudokuservice.updatePossibilities();
+      this.sudokuservice.updatePossibilities(this.sudokuservice.puzzle);
       event.preventDefault();
 
     }

@@ -1,8 +1,18 @@
-<p>sudoku-grid works!</p>
-<p>{{ sudokuService.testable }}</p>
-<div class="sudokuRow" *ngFor="let row of sudokuService.puzzle; index as i">
-    <app-sudoku-square *ngFor="let column of row; index as j" [square]="puzzle[i][j]"></app-sudoku-square>
+<div *ngIf="!sudokuService.toggleSolution">
+    <div class="sudokuRow" *ngFor="let row of sudokuService.puzzle; index as i">
+        <app-sudoku-square *ngFor="let column of row; index as j" [square]="sudokuService.puzzle[i][j]">
+        </app-sudoku-square>
+    </div>
 </div>
+
+<div *ngIf="sudokuService.toggleSolution">
+    <div class="sudokuRow" *ngFor="let row of sudokuService.solvedPuzzle; index as i">
+        <app-sudoku-square *ngFor="let column of row; index as j" [square]="sudokuService.solvedPuzzle[i][j]">
+        </app-sudoku-square>
+    </div>
+</div>
+
+
 
 <button (click)="button()" class="btn btn-primary">Pencil</button>
 
