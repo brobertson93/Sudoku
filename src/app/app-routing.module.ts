@@ -9,7 +9,7 @@ import { ApiIntegrationComponent } from './components/api-integration/api-integr
 const routes: Routes = [
   { path: 'sudoku', component: SudokuComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'api_integration', component: ApiIntegrationComponent },
+  { path: 'data_display', component: ApiIntegrationComponent },
   { path: 'resume', component: ResumeComponent },
   {
     path: '',

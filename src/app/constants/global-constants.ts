@@ -5,6 +5,6 @@ export class GlobalConstants {
         new Link('Resume', '/resume'),
         new Link('Sudoku', '/sudoku'),
         new Link('Contact', '/contact'),
-        new Link('API Integration', '/api_integration')
+        new Link('Data Display', '/data_display')
     ];
 }
